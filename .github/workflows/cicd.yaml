@@ -30,7 +30,7 @@ jobs:
         pytest
 
   build-and-publish:
-    needs: build-and-test
+    needs: build-and-tests
     runs-on: ubuntu-latest
 
     steps:
@@ -50,7 +50,7 @@ jobs:
     - name: Build and push Docker image
       uses: docker/build-push-action@v4
       with:
-        context:
+        context: .
         file: ./DockerFile
         push: true
         tags: ${{ secrets.DOCKER_USERNAME }}/flasktest-app:latest
